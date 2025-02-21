@@ -1,0 +1,25 @@
+---
+title: "hw_lubridate_purrr"
+author: "Jack Kuo Chang"
+date: "2025-02-21"
+output: html_document
+---
+
+```{r, message = FALSE}
+library(lubridate)
+library(purrr)
+```
+
+```{r}
+#1Generate a sequence of dates from January 1, 2015 to December 31, 2025, spaced by
+#every two months. Extract the year, quarter, and ISO week #number for each date.
+
+dates_seq <- seq(ymd("2015-01-01"), ymd("2025-12-31"), by = "2 months")
+year_values <- year(dates_seq)
+quarter_values <- quarter(dates_seq)
+iso_week_values <- isoweek(dates_seq)
+
+result_ex1 <- data.frame(Date = dates_seq, Year = year_values, Quarter = quarter_values, ISO_Week = iso_week_values)
+print(result_ex1)
+```
+
