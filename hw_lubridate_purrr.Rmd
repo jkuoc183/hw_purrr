@@ -23,3 +23,19 @@ result_ex1 <- data.frame(Date = dates_seq, Year = year_values, Quarter = quarter
 print(result_ex1)
 ```
 
+```{r}
+#2
+sample_dates <- ymd(c("2018-03-15", "2020-07-20", "2023-01-10", "2025-09-05"))
+
+month_diffs <- diff(sample_dates) / dmonths(1)  
+week_diffs <- diff(sample_dates) / dweeks(1) 
+
+result_ex2 <- data.frame(
+  Start_Date = sample_dates[-length(sample_dates)],
+  End_Date = sample_dates[-1],
+  Month_Difference = month_diffs,
+  Week_Difference = week_diffs
+)
+print(result_ex2)
+```
+
