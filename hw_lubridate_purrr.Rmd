@@ -60,4 +60,30 @@ stats <- tibble(
 
 print(stats)
 ```
+```{r}
+
+#Question 4:
+#Given a list of mixed date formats, use map() and possibly() from purrr to safely convert
+#them to Date format and extract the month name.
+#date_strings <- list("2023-06-10", "2022/12/25", "15-Aug-2021", "InvalidDate")
+
+date_strings <- list("2023-06-10", "2022/12/25", "15-Aug-2021", "InvalidDate")
+
+extract_month <- function(date_str) {
+  
+ d <- parse_date_time(date_str, orders =c("ymd", "dmy"))
+
+ if(is.na(d)) {
+  stop("Date conversion failed")
+ }
+ month(d, label = TRUE, abbr = FALSE) %>% as.character()
+}
+
+safe_extract_month <- possibly(extract_month, otherwise = NA_character_)
+
+month_names <- map(date_strings, safe_extract_month)
+
+print(month_names)
+
+```
 
